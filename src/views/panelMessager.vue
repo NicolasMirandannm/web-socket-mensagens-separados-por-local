@@ -10,6 +10,7 @@
 
 <script>
 import SendMessager from '../components/sendMessager'
+import api from '../services/api-connection.ts'
 
 export default {
   name: "panel-messager",
@@ -18,12 +19,20 @@ export default {
   },
   data() {
     return {
-      locations: [
-        { name: "São Paulo" },
-        { name: "Mato Grosso do Sul" },
-        { name: "Minas Gerais" },
-      ],
+      locations: [],
     };
+  },
+  mounted() {
+    api.get("/location").then((res) => {
+
+      const locationsArr = res.data.map((local) => {
+        return {
+          name: local
+        }
+      })
+
+      this.locations = locationsArr;
+    })
   },
 };
 </script>

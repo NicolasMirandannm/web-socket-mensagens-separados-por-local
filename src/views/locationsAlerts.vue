@@ -31,7 +31,16 @@ export default {
   },
   created() {
     const socket = io('http://localhost:3000/')   
-    
+    const location = localStorage.getItem('Location')
+
+    socket.on('connection', (res) => {
+      console.log(res)
+    })
+
+    socket.on(`notification/${location}`, res => {
+      console.log('teste')
+      this.msg = res;
+    })
   }
 }
 </script>

@@ -4,7 +4,7 @@
     <div class="messager">
       <div class="title">{{ local }}</div>
       <input class="input-msg" v-model="msg" type="text" placeholder="Escreva sua mensagem..."/>
-      <button class="button">
+      <button class="button" @click="publishMsg()">
         Enviar
       </button>
     </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import api from '../services/api-connection.ts'
 
 export default {
   name: "send-messager",
@@ -20,7 +21,15 @@ export default {
     return {
       msg: ''
     }
-  }  
+  },
+  methods: {
+    publishMsg() {
+      api.post('/message/create', {message: this.msg, local: this.local}).then(res => {
+        console.log('mensagem enviado para' + localStorage.getItem('Location'))
+      })
+      this.msg = ''
+    }
+  },
 }
 </script>
 

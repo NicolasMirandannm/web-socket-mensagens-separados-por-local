@@ -23,15 +23,13 @@
 
 <script>
 import dropdown from "vue-dropdowns";
+import api from '../services/api-connection.ts'
+
 export default {
   name: "loginView",
   data() {
     return {
-      arrayValues: [
-        { name: "São Paulo" },
-        { name: "Mato Grosso do Sul" },
-        { name: "Minas Gerais" },
-      ],
+      arrayValues: [],
       value: "",
       location: "",
     };
@@ -39,8 +37,19 @@ export default {
   components: {
     dropdown: dropdown,
   },
+  mounted() {
+    api.get("/location").then((res) => {
+      const locations = res.data.map((local) => {
+        return {
+          name: local
+        }
+      })
+      console.log(res.data)
+      this.arrayValues = locations;
+    })
+  },
   created() {
-    this.location = localStorage.getItem("Location") || ''
+    this.location = localStorage.getItem("Location") || '';
   },
   methods: {
     methodToRunOnSelect(payload) {
