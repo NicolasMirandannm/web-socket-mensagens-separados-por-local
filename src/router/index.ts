@@ -11,12 +11,14 @@ const routes: Array<RouteConfig> = [
     component: LoginView
   },
   {
-    path: '/LocationEmits',
+    path: '/location-emits',
     name: 'Location-emits',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/locationsAlerts.vue')
+    component: () => import('../views/locationsAlerts.vue')
+  },
+  {
+    path: '/messager-panel',
+    name: 'panel-messager',
+    component: () => import('../views/panelMessager.vue')
   }
 ]
 

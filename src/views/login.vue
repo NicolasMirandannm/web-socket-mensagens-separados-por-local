@@ -23,7 +23,6 @@
 
 <script>
 import dropdown from "vue-dropdowns";
-
 export default {
   name: "loginView",
   data() {
@@ -39,6 +38,9 @@ export default {
   },
   components: {
     dropdown: dropdown,
+  },
+  created() {
+    this.location = localStorage.getItem("Location") || ''
   },
   methods: {
     methodToRunOnSelect(payload) {

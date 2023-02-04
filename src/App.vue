@@ -2,7 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/">Login</router-link> |
-      <router-link to="/LocationEmits">Location Emits</router-link>
+      <router-link to="/messager-panel">Send a message</router-link> | 
+      <router-link to="/location-emits">Location Emits</router-link>
     </nav>
     <router-view/>
   </div>

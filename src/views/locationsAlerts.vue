@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { io } from 'socket.io-client';
 
 export default {
   data() {
@@ -22,12 +23,14 @@ export default {
       msg: ''
     }
   },
-  created() {
+  mounted() {
     if(localStorage.getItem("Location") === '' || !(localStorage.getItem("Location")))  {
       this.$router.push('/')
     }
     this.location = localStorage.getItem("Location") || ''
-
+  },
+  created() {
+    const socket = io('http://localhost:3000/')   
     
   }
 }
